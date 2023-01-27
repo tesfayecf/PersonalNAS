@@ -1,0 +1,444 @@
+  <!doctype html>
+  <html lang="en" style="background-color: rgb(25, 26,27);;">
+  
+  <meta charset="utf-8" content="width=device-width, height=device-height, initial-scale=1">
+  <title>Personal NAS Server</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <header >Personal NAS server</header>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  
+  <style>
+  
+      body {
+          background-color: rgb(25, 26,27);
+      }
+  
+      header {
+          position: fixed;
+          color: white;
+          font-size: 35px;
+          font-family: 'Times New Roman', Times, serif;
+          text-align: center;
+          background-color: rgb(5,152,98);
+          width: 97vw;
+          max-width: 2328px;
+          margin-left: 1vw;
+          margin-right: 1vw;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          padding-top: 15px;
+          border-radius: 5px;
+          padding-bottom: 15px;
+      }
+  
+      .main-container {
+          display: flex;
+          position: absolute;
+          top: 85px;
+          width: 97%;
+          height: 100%;
+          max-width: 1980px;
+          min-width: 770px;
+          margin-left: 1vw;
+          margin-right: 1vw;
+          padding: 1px;
+          z-index: -10;
+          /* overflow: clip; */
+      }
+  
+      .menu-container {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          background-color: rgb(53,57,59);
+          height: 650px;
+          width: 150px;
+          margin-top: 15px;
+          margin-right: 10px;
+          border-radius: 5px;
+      }
+  
+      .menu-div {
+          position: relative;
+          background-color: rgb(70, 75, 78);
+          height: 90px;
+          width: 130px;
+          margin-left: 10px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          border-radius: 15px;
+      }
+  
+      .menu-button {
+          position: relative;
+          background-color: rgba(0,0,0,0);
+          top: 0px;
+          left: 10px;
+          height: 70px;
+          width: 110px;
+          margin: 0px;
+          border-width: 0px;
+      }
+  
+      .home-div:hover {   background-color: rgb(120, 120, 120);  }
+      .back-div:hover {   background-color: rgb(120, 120, 120);  }
+      .trash-div:hover {   background-color: rgb(120, 120, 120);  }
+      .nwfldr-div:hover {   background-color: rgb(120, 120, 120);  }
+      .nwfl-div:hover {   background-color: rgb(120, 120, 120);  }
+      .open-div:hover {   background-color: rgb(120, 120, 120);  }
+      .dwnld-div:hover {   background-color: rgb(120, 120, 120);  }
+  
+  
+      .historial-container {
+          position: fixed;
+          background-color: rgb(53,57,59);
+          right: 1.6vw;
+          width: 150px;
+          height: 640px;
+          margin-top: 15px;
+          margin-left: 0px;
+          border-radius: 5px;
+  
+      }
+  
+      .historial-div {
+          position: relative;
+          background-color: rgb(70, 75, 78);
+          height: 90px;
+          width: 130px;
+          margin-left: 10px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          border-radius: 15px;
+      }
+  
+      .historial-button {
+          position: relative;
+          background-color: rgba(0,0,0,0);
+          top: 10px;
+          left: 12px;
+          height: 70px;
+          width: 110px;
+          margin: 0px;
+          border-width: 0px;
+      }
+  
+      .expand-div:hover {   background-color: rgb(120, 120, 120);  }
+  
+      .data-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(5vw, 200px));
+          justify-items: center;
+          align-items: center;
+          grid-gap: 10px;
+          grid-auto-rows: minmax(200px, 200px);
+          
+          position: relative;
+          background-color: rgb(70, 75, 78);
+          left: 175px;
+          padding: 15px;
+          margin-top: 15px;
+          margin-left: 5px;
+          margin-right: 10px;
+          width: 1091px;
+          height: 100%;
+          overflow-y: scroll;
+      }
+  
+      .data-div {
+          color: white;
+          text-align: center;
+          line-height: normal;
+          vertical-align: middle;
+          height: 200px;
+          width: 200px;
+          border-radius: 15px;
+          background-color: rgb(70, 75, 78);
+      }
+  
+      .data-button {
+          position: relative;
+          background-color: rgba(0,0,0,0);
+          top: 30px;
+          height: 140px;
+          width: 180px;
+          padding: 10px;
+          border-width: 0px;
+          justify-content: center;
+          align-items: center;
+      }
+  
+      .data-text-div {
+          position: absolute;
+          overflow-wrap: break-word;
+          font-size: 22px;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          font-weight: 10px;
+          color: white;
+          height: 30px;
+          width: 100%;
+          left: 0px;
+          bottom: 0px;
+          margin: 5px;
+          align-items: center;
+          line-height: 30px;
+          
+      }
+  
+      .data-icon {
+          color: rgb(253, 184, 83);
+          position: relative;
+          top: -20px;
+          left: 10px;
+      }
+  
+      .data-file {
+          position: absolute;
+          height: 90vh;
+          width: 100%;
+          top: 0px;
+      }
+  
+      .data-div:hover {   background-color: rgb(153, 153, 77);    }
+      .data-div:hover .data-text-div  {   color: black;   }
+      .data-div:hover .data-icon {    color: black;   }
+  
+  
+  </style>
+  
+  <body style="overflow: hidden;">
+      
+      <div id="main-container" class="main-container">
+  
+          <div id="menu-container" class="menu-container">
+  
+              <div id="home-div" class="menu-div home-div">
+                  <button id="home-but" class="menu-button home-but">
+                      <i class="fa-solid fa-home fa-3x"></i>
+                  </button>
+              </div>
+  
+              <div id="back-div" class="menu-div back-div">
+                  <button id="back-but" class="menu-button back-but">
+                      <i class="fa-solid fa-backward fa-3x"></i>
+                  </button>
+              </div>
+  
+              <div id="trash-div" class="menu-div trash-div">
+                  <button id="trash-but" class="menu-button trash-but">
+                      <i class="fa-solid fa-trash fa-3x"></i>
+                  </button>
+              </div>
+  
+              <div id="nwfldr-div" class="menu-div nwfldr-div">
+                  <button id="nwfldr-but" class="menu-button nwfldr-but">
+                      <i class="fa-solid fa-folder-plus fa-3x"></i>
+                  </button>
+              </div>
+  
+              <div id="nwfl-div" class="menu-div nwfl-div">
+                  <button id="nwfl-but" class="menu-button nwfl-but">
+                      <i class="fa-solid fa-file fa-3x" ></i></i>
+                  </button>
+              </div>
+  
+              <div id="open-div" class="menu-div open-div">
+                  <button id="open-but" class="menu-button open-but">
+                      <i class="fa-solid fa-pen-to-square fa-3x"></i>
+                  </button>
+              </div>
+  
+              <div id="dwnld-div" class="menu-div dwnld-div">
+                  <button id="dwld-but" class="menu-button dwnld-but">
+                      <i class="fa-solid fa-download fa-3x"></i>
+                  </button>
+              </div>
+  
+          </div>
+  
+          <div id="data-container" class="data-container" >
+              <!-- <embed class="data-file" src= "Pressupost.pdf" type="application/pdf" > -->
+              <!-- <embed class="data-file" src= "Pressupost.docx" type="DOCX/DOC" > -->
+  
+              <!-- <embed class="data-file" src="textFile.txt" type="text/text"> -->
+              <!-- <embed class="data-file" src="wifiFunctions.cpp" type="text/text"> -->
+              <!-- <embed class="data-file" src="loadingGif.gif"> -->
+              <!-- <embed class="data-file" src="videollarg.mp4"> -->
+              <!-- <embed class="data-file" src="EntradaObert3.iam"> -->
+              <!-- <embed class="data-file" src="support_vector_machines_succinctly.epub"> -->
+          </div>
+  
+          <div id="historial-container" class="historial-container">
+  
+              <div id="expand-div" class="historial-div expand-div" style="position: absolute;bottom: 0px;">
+                  <button id="expand-but" class="historial-button expand-but" onclick="setFullScreen()">
+                      <i class="fa-solid fa-expand fa-3x"></i>
+                  </button>
+              </div>
+  
+          </div>
+      
+      </div>
+  
+  </body>
+  
+  <script>
+      const mainpath = "2.152.26.61";
+      const mainFolder = "bWFpbmZvbGRlcgo="
+      const rewindDirectory = "cmV3aW5kRGlyZWN0b3J5";
+      const wrongName = "RUxFTUVOVCBOT1QgRVhJU1Q=";
+      var viewport_width = window.innerWidth; 
+      var viewport_height = window.innerHeight;
+      var dataContainer = document.getElementById("data-container");
+      var menuContainer = document.getElementById("menu-container");
+      var historialContainer = document.getElementById("historial-container");
+      var full = false;
+      var editMode = false; //when true dataContainer.style.overflow: "hidden";
+      
+  
+  
+      const imageFormats = ["webp", "jpeg", "jpg", "jpe", "jif", "jiff", "jfif", "jfi", "png", "gif", "tiff", "psd", "eps", "ai", "indd", "raw", "arw", "cr2", "nrw", "k25", "bmp", "dib", "heif", "heic", "ind", "indd", "indt", "jp2", "j2k", "jpf", "jpx", "jpm", "mj2", "svg", "svgz", "ai", "heif", "heic"];
+      const videoFormats = ["webm", "mkv", "flv", "vob", "ogv", "ogg", "drc", "gifv", "mng", "avi", "MTS", "M2TS", "TS", "mov", "qt", "wmv", "yuv", "rm", "rmvb", "viv", "asf", "amv", "mp4", "mp2", "mpeg", "mpe", "mpv", "mpg", "mpeg", "m2v", "m4v", "svi", "3gp", "3g2", "mxf", "roq", "nsv", "flv", "f4v", "f4p", "f4a", "f4b"];
+      const audioFormats = ["3gp", "aa", "aac", "aax", "act", "aiff", "alac", "amr", "ape", "au", "awb", "dss", "dvf", "flac", "gsm", "iklax", "ivs", "m4a", "m4b", "m4p", "mmf", "mp3", "mpc", "msv", "nmf", "ogg", "oga", "mogg", "opus", "ra", "rm", "raw", "rf64", "sln", "tta", "voc", "vox", "wav", "wma", "wv", "webm", "8svx", "cds"];
+      const codeFormats = ["c", "cgi", "class", "cpp", "cs", "css", "h", "java", "php", "py", "sh", "swift", "vb", "html", "js", "ahk", "asp", "aspx", "axd", "asx", "asmx", "ashx", "cfm", "yaws", "htm", "xhtml", "shtml", "jhtml", "jps", "jspx", "wss", "do", "action", "pl", "php4", "php3", "phtml", "rb", "rhtml", "rss", "xml", "dll", "fcgi"];
+      const compressedFormats = [];
+      const wordFormats = ["doc", "dot", "wbk", "docx", "docm", "dotx", "dotm", "docb", "wll", "wwl"]
+      const excelFormats = ["xlsx", "xlsm", "xlsb", "xltx", "xltm", "xls", "xlt", "xls", "xml", "xlam", "xla", "xlw", "xlr", "xll"];
+      const powerpointFormats = ["pptx", "pptm", "ppt", "potx", "potm", "pot", "ppsx", "ppsm", "pps", "ppam", "ppa", "sldx", "sldm", "pa"];
+  
+      function setDataContainerParams() {
+          if (!full) {
+              var dataWidth = viewport_width - 440;
+              var dataHeight = viewport_height - 145;
+              if (dataWidth < 200) { dataWidth = 200;}
+          } else {
+              var dataWidth = viewport_width - 85;
+              var dataHeight = viewport_height - 145;
+              dataContainer.style.position = "absolute";
+              dataContainer.style.left = "0px";
+              // container.style.top = "150px"; 
+              menuContainer.style.display = "none";
+              historialContainer.style.display = "none";
+              
+              
+  
+              
+  
+          }
+          dataContainer.style.width = String(dataWidth) + "px";
+          dataContainer.style.height = String(dataHeight) + "Px";
+      }
+  
+      function setFullScreen() {
+          full = true;
+      }
+  
+      function requestData(action, path) {
+          var oReq = new XMLHttpRequest();
+          oReq.addEventListener("load", action);
+          webpath = "http://" + mainpath + "/" + path;
+          oReq.open("GET", webpath);
+          oReq.send();
+      }
+      
+      function requestArguments(action, path, parameters, values) {
+          var oReq = new XMLHttpRequest();
+          oReq.addEventListener("load", action);
+          var parametersString = "";
+          for (var i = 0; i < parameters.length; i++) {
+              parametersString += parameters[i] + "=" + values[i];
+              if (i < parameters.length - 1) {
+                  parametersString += "&";
+              }
+          }
+          webpath = "http://" + mainpath + "/" + path + "?" + parametersString;
+          oReq.open("GET", webpath);
+          oReq.send();
+      }
+  
+      function addDiv(fileData) {
+          var folderType = false;
+          const div = document.createElement("div");
+          div.setAttribute("id", "div-" + fileData.name);
+          const container = document.getElementById("data-container");
+          container.appendChild(div);
+          div.classList.add("data-div");
+          if (fileData.type == "folder")  folderType = true;
+          addButton(fileData.name, fileData.extension, folderType);
+          addIcon(fileData.name, fileData.extension, folderType);
+      }
+  
+      function addButton(name, extension, folder) {
+          const button = document.createElement("button");
+          button.setAttribute("id", "button-" + name);
+          const divContainer = document.getElementById("div-" + name);
+          divContainer.appendChild(button);
+          button.classList.add("data-button");
+          button.innerHTML = '<div id="data-text-div-' + name + '" class="data-text-div">' + name + '</div>';
+          var actionText = "javascript: changeFolder1(" + name + ");";
+          if (folder) button.onclick = () => {changeFolder(name);}
+          else button.onclick = () => {openFile(name);}
+      }
+  
+      function addIcon(name, extension, folder = false) {
+          const icon = document.createElement("i");
+          icon.setAttribute("id", "icon-" + name);
+          const buttonContainer = document.getElementById("button-" + name);
+          buttonContainer.appendChild(icon);
+          icon.classList.add("data-icon");
+          icon.classList.add("fa-solid");
+          if (folder) {
+              if (name == "imatges" || name == "imagenes" || name == "images") icon.classList.add("fa-folder-image");
+              else if (name == "música" || name == "musica" || name == "music") icon.classList.add("fa-folder-music");
+              else icon.classList.add("fa-folder-open");
+          } else {
+              if ("pdf" == extension) icon.classList.add("fa-file-pdf");
+              if ("txt" == extension) icon.classList.add("fa-file-lines");
+              else if (imageFormats.includes(extension)) icon.classList.add("fa-file-image");
+              else if (videoFormats.includes(extension)) icon.classList.add("fa-file-video");
+              else if (audioFormats.includes(extension)) icon.classList.add("fa-file-audio");
+              else if (codeFormats.includes(extension)) icon.classList.add("fa-file-code");
+              else if (wordFormats.includes(extension)) icon.classList.add("fa-file-word");
+              else if (excelFormats.includes(extension)) icon.classList.add("fa-file-excel");
+              else if (powerpointFormats.includes(extension)) icon.classList.add("fa-file-powerpoint");
+  
+              else icon.classList.add("fa-file");
+              icon.style.left = "5px";
+          }
+          icon.classList.add("fa-7x");
+          
+      }
+  
+      function populate() {
+          if (this.responseText == wrongName) {
+              alert("This file doesn not exist!");
+              return;
+          }
+          const container = document.getElementById("data-container");
+          container.innerHTML = "";
+          const elements = JSON.parse(this.responseText);
+          var count = Object.keys(elements).length;
+          for (let i = 1; i <= count; i++) {
+              addDiv(elements[i][0]);
+          }
+      }
+  
+      function changeFolder(name) {
+          requestArguments(populate, "dirList", ["folder"], [name]);
+      }
+      
+      function openFile(name) {
+          alert(name);
+      }
+  
+      document.getElementById("home-but").onclick = () => {requestArguments(populate, "dirList", ["folder"], [mainFolder]);}
+      document.getElementById("back-but").onclick = () => {requestArguments(populate, "dirList", ["folder"], [rewindDirectory]);}
+      
+      requestArguments(populate, "dirList", ["folder"], [mainFolder]);
+      setInterval(setDataContainerParams, 100);
+  
+  </script>
+  
+  </html>
